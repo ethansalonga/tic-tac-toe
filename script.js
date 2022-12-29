@@ -3,11 +3,14 @@ const title = document.querySelector(".board__title")
 
 let currentPlayer = "X"
 
-let board = ["X", "O", "X", "O", "X", "O", "X", "O", "X"]
+let board = new Array(9)
 
 allSquares.forEach((square, i) => {
   square.addEventListener("click", () => {
     square.innerHTML = currentPlayer
+    board[i] = currentPlayer
+
+    console.log(board)
 
     checkWin()
 
@@ -33,10 +36,13 @@ function checkWin() {
 
   for (let i = 0; i < winningIndices.length; ++i) {
     const matchingIndices = winningIndices[i]
-    console.log(matchingIndices)
     let symbol1 = board[matchingIndices[0]]
     let symbol2 = board[matchingIndices[1]]
     let symbol3 = board[matchingIndices[2]]
+
+    if (!symbol1 || !symbol2 || !symbol3) {
+      continue
+    }
 
     if (symbol1 === symbol2 && symbol2 === symbol3) {
       console.log("winner at", matchingIndices);
