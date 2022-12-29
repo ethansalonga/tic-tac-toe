@@ -2,17 +2,22 @@ const allSquares = document.querySelectorAll(".board__square")
 const title = document.querySelector(".board__title")
 
 let currentPlayer = "X"
-
+let gameOver = false
 let board = new Array(9)
 
 allSquares.forEach((square, i) => {
   square.addEventListener("click", () => {
+    if (gameOver) {
+      return
+    }
     square.innerHTML = currentPlayer
     board[i] = currentPlayer
 
-    console.log(board)
-
-    checkWin()
+    if (checkWin()) {
+      title.innerHTML = `${currentPlayer} wins!`
+      gameOver = true
+      return
+    }
 
     title.innerHTML = `${currentPlayer}'s Turn`
     currentPlayer = currentPlayer === "X" ? "O" : "X"
@@ -46,6 +51,7 @@ function checkWin() {
 
     if (symbol1 === symbol2 && symbol2 === symbol3) {
       console.log("winner at", matchingIndices);
+      return true
     }
   }
 }
