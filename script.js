@@ -30,6 +30,15 @@ allSquares.forEach((square, i) => {
   })
 })
 
+function restartGame() {
+  gameOver = false
+  title.innerHTML = `${currentPlayer}'s Turn'`
+  allSquares.forEach(square => {
+    square.innerHTML = ""
+  })
+  board = newArray(9)
+}
+
 function checkDraw() {
   for (let i = 0; i < board.length; ++i) {
     if (!board[i]) {
