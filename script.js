@@ -7,7 +7,7 @@ let board = new Array(9)
 
 allSquares.forEach((square, i) => {
   square.addEventListener("click", () => {
-    if (gameOver) {
+    if (square.innerHTML || gameOver) {
       return
     }
     square.innerHTML = currentPlayer
