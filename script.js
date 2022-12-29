@@ -19,10 +19,25 @@ allSquares.forEach((square, i) => {
       return
     }
 
+    if (checkDraw()) {
+      title.innerHTML = `Draw!`
+      gameOver = true
+      return
+    }
+
     title.innerHTML = `${currentPlayer}'s Turn`
     currentPlayer = currentPlayer === "X" ? "O" : "X"
   })
 })
+
+function checkDraw() {
+  for (let i = 0; i < board.length; ++i) {
+    if (!board[i]) {
+      return false
+    }
+  }
+  return true
+}
 
 function checkWin() {
   const winningIndices = [
